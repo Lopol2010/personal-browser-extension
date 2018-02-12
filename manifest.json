@@ -9,7 +9,7 @@
 		{
 			"all_frames": true,
 			"matches": ["*://*/*"],
-			"js": ["node_modules/jquery/dist/jquery.min.js", "js/openload.js"],
+			"js": ["node_modules/jquery/dist/jquery.min.js", "js/openload.js", "js/torjackan.js"],
 			"run_at": "document_end"
 		}
 	],

@@ -15,7 +15,7 @@
 	function VideoSetup() {
 		var vid = $('video')
 
-		if( vid.length <= 0 ) return
+		if( vid.length < 0 ) return
 
 		console.log(vid)
 
