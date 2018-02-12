@@ -1,1 +1,1 @@
-# Blank Opera Extension
+Useful hot-reloader for Chrome Extensions https://github.com/xpl/crx-hotreload
