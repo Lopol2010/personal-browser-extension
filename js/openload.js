@@ -1,7 +1,10 @@
 
 if(window.location.href.includes('openload.')){
 	
-	ConvertFrameToVideo()
+	
+	chrome.storage.sync.get({convert: true}, items => {
+		if(items.convert) ConvertFrameToVideo()
+	})
 
 }else {
 
@@ -10,12 +13,19 @@ if(window.location.href.includes('openload.')){
 }
 
 
-
-
 function VideoPlayerStyles() {
 	var vid = $$('video')
 
 	if( vid == null) return
+	
+	chrome.storage.sync.get(['poster', 'autoplay'], value => {
+
+		if(!value.autoplay) vid.removeAttribute('autoplay')
+		else vid.setAttribute('autoplay')
+
+		if(value.poster) vid.setAttribute('poster', value.poster)
+		
+	})
 
 	vid.style.height = '100%'
 	vid.style.width = '100%'
@@ -41,10 +51,18 @@ function ConvertFrameToVideo() {
 		return console.error('STREAM URL NOT FOUND: ' + document.location.href)
 
 	var stream = streamurl.textContent
-
 	var finalurl = `/stream/${stream}?mime=true`
 
+	SavePoster()
 	
 	window.location = finalurl
 }
 
+//e.g. video preview image
+function SavePoster () {
+	var vid = $$('video[poster]')
+	if(vid == null) return
+
+	var posterURL = vid.getAttribute('poster')
+	chrome.storage.sync.set({poster: posterURL})
+}
