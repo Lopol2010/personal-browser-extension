@@ -1,15 +1,20 @@
 {
 	"manifest_version" : 2,
-	"name" : "Openload Only Video",
+	"name" : "MY_EXTENSION",
 	"short_name" : "openload_video",
 	"version" : "1.0",
 	"author" : "...",
-	"description" : "Exctract direct URL for openload videos",
+	"description" : "Convert openload iframe into direct video stream; torjackan justifier;",
 	"content_scripts": [
 		{
 			"all_frames": true,
 			"matches": ["*://*/*"],
-			"js": ["node_modules/jquery/dist/jquery.min.js", "js/openload.js", "js/torjackan.js"],
+			"js": ["js/utils.js", "js/openload.js"],
+			"run_at": "document_end"
+		},
+		{
+			"matches": ["*://torjackan.info/*"],
+			"js": ["js/utils.js", "js/torjackan.js"],
 			"run_at": "document_end"
 		}
 	],

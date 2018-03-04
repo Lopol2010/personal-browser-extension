@@ -1,51 +1,25 @@
-(function() {
 
-	if(window.location.href.includes('torjackan.') || window == window.top){
-		ObserveAndRemoveAds(10)
-	}
+if(window.location.href.includes('torjackan.') && window == window.top){
 
-	function ObserveAndRemoveAds (timeout) {
-		// выбираем целевой элемент
-		var target = $('body')[0]
-
-		// создаём экземпляр MutationObserver
-		var observer = new MutationObserver(function(mutations) {
-
-			mutations.forEach(function(mutation) {
-
-				var $cur = $(mutation.addedNodes)
-				var $cur2 = $(mutation.target)
-
-				if($cur.css('z-index') > 0 || $cur.is('script, iframe, .padPreload')){
-
-					console.log($cur)
-
-					$cur.remove()
-					$cur2.remove()
-				}
-
-			})
-			// 
-			$('script, iframe:not([src*="openload"]), .padPreload, div[style*="z-index"]').remove()
-
-			//defuse all links
-			$('a[href*="ouo"]').each(function() {
-				this.href = decodeURIComponent(this.href.replace(/.*=/, ''))
-			})
-
-			//remove everything constains 'ad' in class name
-			$('div[class*=ad], p[class*=ad]').remove()
-
+	ContinousExec(30, 10, function(){
+		$('script, iframe:not([src*="openload"]), .padPreload, div[style*="z-index"]').forEach(el => {
+			el.remove()
 		})
 
-		var config = { attributes: true, childList: true, characterData: true }
+		//defuse all links
+		$('a[href*="ouo"]').forEach(function(el, i) {
+			el.href = decodeURIComponent(el.href.replace(/.*=/, ''))
+		})
 
-		observer.observe(target, config)
+	})
+}
 
-		// setTimeout(function(){
-		// 	observer.disconnect()
-		// 	// alert(123)
-		// }, timeout)
-	}
+function ContinousExec (interval, count, f) {
 
-})()
+	var handler = setInterval(()=>{
+		f()
+		if(--count <= 0)
+			clearInterval(handler)
+	}, interval)
+}
+
