@@ -3,20 +3,28 @@
 	"name" : "MY_EXTENSION",
 	"short_name" : "openload_video",
 	"version" : "1.0",
-	"author" : "...",
-	"description" : "Convert openload iframe into direct video stream; torjackan justifier;",
+	"author" : "Evgeniy Ryzhov",
+	"description" : "Extract openload video; Torjackan justifier; Cross-browser session saver",
 	"content_scripts": [
 		{
 			"all_frames": true,
-			"matches": ["*://*/*"],
-			"js": ["js/utils.js", "js/openload.js"],
+			"matches": ["*://openload.co/*"],
+			"js": ["js/jquery.js", "js/openload/openload.js"],
+			"run_at": "document_end"
+		},		
+		{
+			"all_frames": true,
+			"matches": ["*://*.oloadcdn.net/*"],
+			"js": ["js/utils.js", "js/openload/video.js"],
+			"css": ["style/video.css"],
 			"run_at": "document_end"
 		},
 		{
 			"matches": ["*://torjackan.info/*"],
-			"js": ["js/utils.js", "js/torjackan.js"],
+			"js": ["js/utils.js", "js/torjackan/torjackan.js"],
 			"run_at": "document_end"
 		}
+
 	],
 	"icons" : {
 		"32" : "icons/32x32.png",
@@ -24,18 +32,26 @@
 	},
 	
 	"background" : {
-		"scripts" : ["hot-reload.js","background.js"],
+		"scripts" : [
+			"js/background/oauth2.js",
+			"js/background/sheetsAPI.js",
+			"js/background/background.js"
+		],
 		"persistent" : false
 	},
 	"permissions": [
 		"storage",
-		"tabs"
+		"tabs",
+		"bookmarks",
+		"identity",
+		"*://*/*"
 	],
     "browser_action": {
         "default_title": "...",
         "default_icon": "icons/48x48.png",
 		"default_popup": "popup.html"
-    }
+	},
+	"key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAh1aGncT1DOtA6AqmWiEbb5CHI/PsRxeG1G8SDy7r6GtdbkeY13bA9w7lfMiq47MA1BXmbiAhcMK3ZEWQQXuX4U6/TKA/7bHlcVUkNtX2mkpgxtvXY9LjHH/QfdZDZ9dmxCijwvKyq651gU4X/B/c2V1DFiHV1hnJJrTbtvsQpkqZJz0QLxbH2Yl2opd5ObwcavgPHiKrZMngM/zYxsF04if8otHlrluxL0D0ACdzpGA7hB1vr7gxekHUDRYxLT7LxSs0n4ak5UuwgwU/g9MJjnF4+mQkoPGgIccrbHecb+Mt1bTn1C/CrRVfypd8HS+BdpbINVj14DI6xUF9MrxDWQIDAQAB"
 }
 
 

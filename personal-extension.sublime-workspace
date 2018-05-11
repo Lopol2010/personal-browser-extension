@@ -4,16 +4,36 @@
 		"selected_items":
 		[
 			[
+				"rand",
+				"randNode\tany"
+			],
+			[
+				"ran",
+				"randNode\tany"
+			],
+			[
+				"randn",
+				"randNumber\tany"
+			],
+			[
+				"else",
+				"else_if"
+			],
+			[
+				"fun",
+				"function_with_name"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
 				"pic",
 				"picsFolder"
 			],
 			[
 				"gif",
 				"gifs"
-			],
-			[
-				"fun",
-				"function"
 			],
 			[
 				"clear",
@@ -324,10 +344,6 @@
 				"volume"
 			],
 			[
-				"wid",
-				"width\t = 'initial' Style CSS"
-			],
-			[
 				"bgc",
 				"background-color"
 			],
@@ -349,9 +365,6 @@
 			]
 		]
 	},
-	"buffers":
-	[
-	],
 	"build_system": "",
 	"build_system_choices":
 	[
@@ -530,13 +543,15 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
-	"expanded_folders":
-	[
-		"/E/apps/extensions/personal"
-	],
 	"file_history":
 	[
+		"/E/apps/extensions/torjackan-mobile/js/openload.js",
 		"/E/apps/extensions/personal/manifest.json",
+		"/E/apps/extensions/personal/README.md",
+		"/E/apps/extensions/personal/.gitignore",
+		"/E/apps/extensions/personal/package-lock.json",
+		"/E/apps/extensions/personal/background.js",
+		"/E/apps/extensions/personal/.gitattributes",
 		"/E/apps/extensions/torjackan-mobile/background.js",
 		"/E/apps/py-scripts/sort-deprecated.py",
 		"/C/Users/flower/Desktop/Programs/e.txt",
@@ -552,7 +567,6 @@
 		"/E/apps/extensions/personal/package.json",
 		"/E/apps/extensions/torjackan-mobile/dist/src.js",
 		"/E/apps/extensions/torjackan-mobile/js/src.js",
-		"/E/apps/extensions/torjackan-mobile/js/openload.js",
 		"/E/apps/extensions/personal/src/manifest.json",
 		"/E/apps/extensions/torjackan-mobile/dist/torjackan.js",
 		"/E/apps/site/bitardia-ci/package.json",
@@ -658,12 +672,7 @@
 		"/E/web/site/bitardia/src/client/js/players-online.js",
 		"/E/web/site/bitardia/build/client/bundle.js",
 		"/E/web/site/bitardia/build/web.config",
-		"/E/web/site/bitardia/package.json",
-		"/E/web/site/bitardia/.env",
-		"/E/web/site/bitardia/composer.lock",
-		"/E/web/site/bitardia/src/client/view-config.json",
-		"/E/web/site/bitardia/src/client/js/Songer.js",
-		"/E/web/site/bitardia/webpack.config.js"
+		"/E/web/site/bitardia/package.json"
 	],
 	"find":
 	{
@@ -682,6 +691,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"bkmrk",
+			"label",
+			"VideoSetup",
+			"streamurl",
 			"Name",
 			"zipfile",
 			"is",
@@ -753,14 +766,6 @@
 		"whole_word": false,
 		"wrap": true
 	},
-	"groups":
-	[
-		{
-			"sheets":
-			[
-			]
-		}
-	],
 	"incremental_find":
 	{
 		"height": 23.0
@@ -797,7 +802,6 @@
 		"height": 0.0
 	},
 	"pinned_build_system": "",
-	"project": "personal-extension.sublime-project",
 	"replace":
 	{
 		"height": 42.0
@@ -1018,7 +1022,6 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 0,
 	"settings":
 	{
 	},

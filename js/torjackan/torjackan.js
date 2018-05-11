@@ -2,9 +2,9 @@
 if(window.location.href.includes('torjackan.') && window == window.top){
 
 	ContinousExec(30, 10, function(){
-		$('script, iframe:not([src*="openload"]), .padPreload, div[style*="z-index"]').forEach(el => {
-			el.remove()
-		})
+		// $('script, iframe:not([src*="openload"]), .padPreload, div[style*="z-index"]').forEach(el => {
+		// 	el.remove()
+		// })
 
 		//defuse all links
 		$('a[href*="ouo"]').forEach(function(el, i) {

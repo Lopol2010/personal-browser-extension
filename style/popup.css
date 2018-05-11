@@ -1,0 +1,45 @@
+body {min-width: 350px}
+
+.domains {width: 100%; height: 200px; max-width: 100%} 
+
+.hidden { display: none; }
+
+.option { 
+	width: 100%; 
+ }
+.option > .option {
+	margin-left: 15px;
+}
+.checkbox-title {
+	float: left;
+}
+
+.list {
+	width: 100%;
+	/* min-height: 200px; */
+	
+}
+.list textarea{
+	box-sizing:border-box;
+	margin-top: 5px;
+	width: 100%;
+	height: 100%;
+}
+.block {
+	margin: 5px auto;
+	border: solid 1px grey;
+	padding: 5px;
+}
+.block-title {
+	font-size: 15px;
+	padding-bottom: 5px;
+}
+
+.block-btn {
+	border-style: outset;
+	border-width: 2px;
+	background-color: grey;
+}
+.block-btn:hover {
+	cursor: pointer;
+}
