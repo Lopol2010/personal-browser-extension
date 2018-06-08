@@ -1,8 +1,10 @@
+import {querySelectorAll, querySelector} from '../../utils'
 
-var vid = $$('video')
 
-//poster
-chrome.storage.sync.get({poster: '', autoplay: false}, value => {
+var vid = querySelector('video')
+
+//get poster and paste
+chrome.storage.local.get({poster: '', autoplay: false}, value => {
 
 	value.autoplay ? vid.setAttribute('autoplay') : vid.removeAttribute('autoplay')
 

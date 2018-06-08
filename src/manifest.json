@@ -2,29 +2,23 @@
 	"manifest_version" : 2,
 	"name" : "MY_EXTENSION",
 	"short_name" : "openload_video",
-	"version" : "1.0",
+	"version" : "1.02",
 	"author" : "Evgeniy Ryzhov",
 	"description" : "Extract openload video; Torjackan justifier; Cross-browser session saver",
 	"content_scripts": [
 		{
 			"all_frames": true,
 			"matches": ["*://openload.co/*"],
-			"js": ["js/jquery.js", "js/openload/openload.js"],
+			"js": ["js/inject/openload/openload.js"],
 			"run_at": "document_end"
 		},		
 		{
 			"all_frames": true,
 			"matches": ["*://*.oloadcdn.net/*"],
-			"js": ["js/utils.js", "js/openload/video.js"],
+			"js": ["js/inject/openload/video.js"],
 			"css": ["style/video.css"],
 			"run_at": "document_end"
-		},
-		{
-			"matches": ["*://torjackan.info/*"],
-			"js": ["js/utils.js", "js/torjackan/torjackan.js"],
-			"run_at": "document_end"
 		}
-
 	],
 	"icons" : {
 		"32" : "icons/32x32.png",
@@ -33,8 +27,6 @@
 	
 	"background" : {
 		"scripts" : [
-			"js/background/oauth2.js",
-			"js/background/sheetsAPI.js",
 			"js/background/background.js"
 		],
 		"persistent" : false
@@ -43,11 +35,10 @@
 		"storage",
 		"tabs",
 		"bookmarks",
-		"identity",
-		"*://*/*"
+		"identity"
 	],
     "browser_action": {
-        "default_title": "...",
+        "default_title": "Click to open Popup window.",
         "default_icon": "icons/48x48.png",
 		"default_popup": "popup.html"
 	},

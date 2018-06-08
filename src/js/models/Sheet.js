@@ -1,14 +1,18 @@
+import {GetAccessToken, API_KEY} from '../models/OAuth'
 var API = "https://sheets.googleapis.com/v4/spreadsheets"
-var SheetID = "1OS91bJCEYx_BbXJkStNF6uzpheJZC6rej-MqJdEYYyA"
+var SheetID = "1OS91bJCEYx_BbXJkStNF6uzpheJZC6rej-MqJdEYYyA" 
+
 
 async function GetSheet(token) {
+  
   var token = await GetAccessToken()
+
   fetch(`${API}/${SheetID}/?access_token=${token}`, {
-    method: 'GET',
+    	method: 'GET',
   }).then(response => {
-    return response.json()
+    	return response.json()
   }).then(sheet => {
-    console.log(sheet)
+   	 	console.log(sheet)
 
   })
 }
@@ -16,74 +20,43 @@ async function GetSheet(token) {
 async function GetCell(cellID) {
   var token = await GetAccessToken()
   return fetch(`${API}/${SheetID}/values/${cellID}?access_token=${token}`, {
-    method: 'GET',
+    	method: 'GET',
   }).then(response => {
-    return response.json()
+   		return response.json()
   })
 }
 
 
 async function GetRowsCount() {
-  var token = await GetAccessToken()
-  return fetch(`${API}/${SheetID}:getByDataFilter?access_token=${token}`, {
-    method: 'POST',
-    body: JSON.stringify({
-      "dataFilters": [
-        {
-          gridRange: {
-            sheetId: 0,
-            startColumnIndex: 0
-          }
-        }
-      ],
-    })
+  // var token = await GetAccessToken()
+
+  return fetch(`${API}/${SheetID}?key=${API_KEY}&includeGridData=false&fields=sheets.properties.gridProperties`, {
+    	method: 'GET'
   }).then(response => {
-    return response.json()
+    	return response.json()
   }).then(obj => {
-    return  obj.sheets[0].properties.gridProperties.rowCount
+    	return  obj.sheets[0].properties.gridProperties.rowCount
   })
 }
 
-async function GetColumnData() {
+export async function GetLastSavedSession() {
   var token = await GetAccessToken()
-  
-  return fetch(`${API}/${SheetID}:getByDataFilter?access_token=${token}`, {
-    method: 'POST',
-    body: JSON.stringify({
-      "dataFilters": [
-        {
-          gridRange: {
-            sheetId: 0,
-            startColumnIndex: 0
-          }
-        }
-      ],
-      includeGridData: true
-    })
-  }).then(response => {
-    return response.json()
-  }).then(obj => {
-    return obj.sheets[0].data[0].rowData.map((cur, idx) => {
-      return cur.values[0].formattedValue
-    }) //[0].values[0].formattedValue 
-  })
-}
+  return GetRowsCount().then(lastRowIdx => {
 
-async function ReplaceCell(CellRange, val) {
-  var token = await GetAccessToken()
-  
-  return fetch(`${API}/${SheetID}/values/${CellRange}?access_token=${token}&valueInputOption=RAW&includeValuesInResponse=true`, {
-    method: 'PUT',
-    body: JSON.stringify({
-      range: CellRange,
-      values: [[val]],
+    return fetch(`${API}/${SheetID}?access_token=${token}&includeGridData=true&fields=sheets.data.rowData&ranges=A1${lastRowIdx}:A${lastRowIdx}`, {
+     	 method: 'GET'
+    }).then(response => {
+      	return response.json()
+    }).then(obj => {
+		var parsed = obj.sheets[0].data[0].rowData.map((cur, idx) => {
+			return cur.values[0].formattedValue
+		}) 
+		return parsed
     })
-  }).then(response => {
-    return response.json()
   })
 }
   
-async function AppendCell(val) {
+export async function AppendCell(val) {
   var token = await GetAccessToken()
   
   return fetch(`${API}/${SheetID}:batchUpdate?access_token=${token}`, {

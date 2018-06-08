@@ -1,0 +1,25 @@
+{
+  "name": "personal",
+  "version": "1.0.0",
+  "description": "**js/openload.js**\t\t-\tforces openload iframe to show direct video stream  \r **hot-reload.js**\t\t-\thttps://github.com/xpl/crx-hotreload",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lopol2010/personal-browser-extension.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lopol2010/personal-browser-extension/issues"
+  },
+  "homepage": "https://github.com/Lopol2010/personal-browser-extension#readme",
+  "devDependencies": {
+    "@types/gapi.client.sheets": "^4.0.0",
+    "copy-webpack-plugin": "^4.5.1",
+    "mithril": "^1.1.6"
+  }
+}
