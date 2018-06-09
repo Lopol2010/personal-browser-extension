@@ -1,7 +1,8 @@
 const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-module.exports = {
+
+var config = {
     context: path.join(__dirname, 'src'),
     mode: 'development',
     devtool: 'cheap-source-map',
@@ -10,21 +11,24 @@ module.exports = {
         'js/inject/openload/openload': './js/inject/openload/openload.js',
         'js/inject/openload/video': './js/inject/openload/video.js',
         'js/popup/popup': './js/popup/popup.js',
-        // oload_v: './js/inject/torjackan/torjackan.js'
-
     },
     output: {
         path: path.join(__dirname, 'dist'),
         filename: '[name].js'
     },
-    // devServer: {
-    //     port: 9000,
-    //     contentBase:    path.join(__dirname, 'dist')
-    // },
+    module: {
+        rules: [
+            // {
+            //     test: /\.ts$/,
+            //     loader: 'ts-loader'
+            // }
+        ]
+    },
     resolve: {
-        extensions: ['.js']
+        extensions: ['.js', '.ts']
     },
     plugins: [
-        new CopyWebpackPlugin(['./manifest.json'])
+        new CopyWebpackPlugin([{from: './manifest.json', cache: true}])
     ]
 }
+module.exports = config

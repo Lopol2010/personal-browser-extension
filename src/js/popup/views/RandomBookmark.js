@@ -2,12 +2,10 @@ import m from 'mithril'
 
 var RandBookmark = {
 	oninit: (vnode) => {
-		chrome.runtime.sendMessage({event: "AuthStatus"}, (status) => { 
-			vnode.state.authorized = status
-		})
+
 	},
-	view: (vnode) => { //
-		return !vnode.state.authorized ? m('.block .block-btn .block-randbookmark', m('.randbookmark', {onclick: openRandBookmak},'Random Bookmark')) : null
+	view: (vnode) => { 
+		return m('.block .block-btn .block-randbookmark', m('.randbookmark', {onclick: openRandBookmak},'Random Bookmark'))
 	}
 }
 function openRandBookmak() {

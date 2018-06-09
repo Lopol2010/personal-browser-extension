@@ -1,10 +1,10 @@
 {
 	"manifest_version" : 2,
 	"name" : "MY_EXTENSION",
-	"short_name" : "openload_video",
-	"version" : "1.02",
-	"author" : "Evgeniy Ryzhov",
-	"description" : "Extract openload video; Torjackan justifier; Cross-browser session saver",
+	"short_name" : "Session manager",
+	"version" : "1.12",
+	"author" : "",
+	"description" : "Extract openload video; Cross-browser(chrome-opera) session saver",
 	"content_scripts": [
 		{
 			"all_frames": true,

@@ -1,9 +1,11 @@
 import m from 'mithril'
+import {GetAccessToken, IsAuthorized} from '../../models/OAuth'
 
 var Auth = {
 	oninit: (vnode) => {
-		chrome.runtime.sendMessage({event: "AuthStatus"}, (status) => { 
+		IsAuthorized(status => { 
 			vnode.state.authorized = status
+			m.redraw() 
 		})
 	},
 	view: (vnode) => { //
@@ -11,8 +13,8 @@ var Auth = {
 	}
 }
 function BeginAuth() {
-	chrome.runtime.sendMessage({event: "Auth"}, (status) => { 
-		console.log(status)
+	GetAccessToken().then(token =>{ 
+		console.log(token)
 	})
 }
 

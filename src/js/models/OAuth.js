@@ -18,7 +18,6 @@ function beginAuthFlow() {
 											client_id: CLIENT_ID, 
 											scope: SCOPES, 
 											redirect_uri: REDIRECT_URL})
-		console.log(TOKEN_URL+ '?'+ queryString)
 		
 		chrome.identity.launchWebAuthFlow({ url: AUTH_URL+ '?'+ queryString, interactive: true }, function (res) {
 			if(res === undefined || res.includes('error')) {
@@ -35,7 +34,9 @@ export function GetAccessToken() {
 
 	GetCachedToken()
 		.then(oauth2 => {
-			console.log('Cached Token: ' + oauth2.access_token)
+			if(process.env.NODE_ENV === 'development'){
+				console.log('Cached Token: ' + oauth2.access_token)
+			}
 			resolve(oauth2.access_token)
 	  }).catch(err => {
 		//example response
@@ -51,7 +52,7 @@ export function GetAccessToken() {
 }
 
 function parseQuery(str) {
-  var [access_token, token_type, expire_date] = str.match(/(?!=)[\w-.]+(?=$|&)/g)
+  var [access_token, token_type, expire_date] = str.match(/[\w.-]+(?=&|$)/g)
   return {
 	access_token: access_token,
 	expire_date: expire_date

@@ -1,7 +1,6 @@
 import {GetAccessToken, API_KEY} from '../models/OAuth'
 var API = "https://sheets.googleapis.com/v4/spreadsheets"
-var SheetID = "1OS91bJCEYx_BbXJkStNF6uzpheJZC6rej-MqJdEYYyA" 
-
+export var SheetID = "1OS91bJCEYx_BbXJkStNF6uzpheJZC6rej-MqJdEYYyA" 
 
 async function GetSheet(token) {
   
@@ -27,10 +26,10 @@ async function GetCell(cellID) {
 }
 
 
-async function GetRowsCount() {
-  // var token = await GetAccessToken()
+export async function GetRowsCount() {
+  var token = await GetAccessToken()
 
-  return fetch(`${API}/${SheetID}?key=${API_KEY}&includeGridData=false&fields=sheets.properties.gridProperties`, {
+  return fetch(`${API}/${SheetID}?access_token=${token}&includeGridData=false&fields=sheets.properties.gridProperties`, {
     	method: 'GET'
   }).then(response => {
     	return response.json()
@@ -38,6 +37,7 @@ async function GetRowsCount() {
     	return  obj.sheets[0].properties.gridProperties.rowCount
   })
 }
+
 
 export async function GetLastSavedSession() {
   var token = await GetAccessToken()
@@ -58,14 +58,12 @@ export async function GetLastSavedSession() {
   
 export async function AppendCell(val) {
   var token = await GetAccessToken()
-  
   return fetch(`${API}/${SheetID}:batchUpdate?access_token=${token}`, {
     method: 'POST',
     body: JSON.stringify({
       requests: [
         {
-          appendCells:
-          {
+          appendCells: {
             sheetId: 0,
             rows: [
               {
@@ -88,7 +86,7 @@ export async function AppendCell(val) {
   })
 }
 
-async function RemoveRows(startIdx, endIdx = startIdx+1) {
+export async function DeleteRows(startIdx, endIdx = startIdx+1) {
   var token = await GetAccessToken()
   
   return fetch(`${API}/${SheetID}:batchUpdate?access_token=${token}`, {
