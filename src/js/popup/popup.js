@@ -5,4 +5,6 @@ import SessionManagePanel from './views/SessionManagePanel'
 import UserSettings from './views/UserSettings'
 import RandBookmark from './views/RandomBookmark';
 
+require('../../style/popup.sass')
+
 m.mount(document.body, {view: () => { return [m(UserSettings), m(SessionManagePanel), m(RandBookmark), m(AuthBtn)] }})

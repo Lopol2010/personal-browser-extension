@@ -17,7 +17,7 @@ var Confirm = {
     },
     view: function (vn) {
         
-        return vn.state.title ? m('.block', [
+        return vn.state.title ? m('.block.block-expand', [
                             m('.block-title', vn.state.title),
                             m('button', {onclick: () => { onOk(vn) } }, 'OK'),
                             m('button', {onclick: ()=>{ onCancel(vn) } }, 'Cancel')

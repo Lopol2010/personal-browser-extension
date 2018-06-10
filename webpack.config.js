@@ -1,10 +1,10 @@
 const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-
-
-var config = {
+const CssExtractPlugin = require('mini-css-extract-plugin')
+const mode = 'development'
+module.exports = {
     context: path.join(__dirname, 'src'),
-    mode: 'development',
+    mode: mode,
     devtool: 'cheap-source-map',
     entry: {
         'js/background/background': './js/background/background.js',
@@ -18,17 +18,23 @@ var config = {
     },
     module: {
         rules: [
-            // {
-            //     test: /\.ts$/,
-            //     loader: 'ts-loader'
-            // }
+            {
+                test: /\.sass$/,
+                use: [
+                    mode === 'development' ? 'style-loader' : CssExtractPlugin.loader,
+                        'css-loader',
+                        // 'postcss-loader', TODO: config
+                        'sass-loader']
+            }
         ]
     },
     resolve: {
-        extensions: ['.js', '.ts']
+        extensions: ['.js', '.ts', '.sass']
     },
     plugins: [
-        new CopyWebpackPlugin([{from: './manifest.json', cache: true}])
+        new CopyWebpackPlugin([{from: './manifest.json', cache: true},
+                                // {from: './style', to: './style', cache: true},
+                                {from: './popup.html', cache: true}]),
+        new CssExtractPlugin({filename: '[name].css'})
     ]
 }
-module.exports = config

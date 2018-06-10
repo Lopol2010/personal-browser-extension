@@ -1,7 +1,7 @@
 import m from 'mithril'
 
 var Checkbox = {
-    ///id - name of the user option and DOM id
+    //id - name of the user option and DOM id
     create: function (title, id) {
         this.list[id] = {title: title, id: id, checked: false}
     },
@@ -21,7 +21,7 @@ var Settings = {
             m.redraw()
         })
 	},
-    view: (vnode) => { //
+    view: (vnode) => {
         
         return m('.block', [
                     m('.block-title', 'Options'),
@@ -32,19 +32,22 @@ var Settings = {
 
 var CheckboxLayout = {
     view: (vn) => {
-        return m('.option', [
-                    m('.checkbox-title', vn.attrs.title),
-                    m('input[type=checkbox]', {onclick: saveOption, id: vn.attrs.id, checked: vn.attrs.checked})
+        return m('.checkbox', {onclick: () => { saveOption(vn) }, id: vn.attrs.id}, [
+                    m('.checkbox-label', vn.attrs.title),
+                    vn.attrs.checked ? m('.checkbox-checked') : m('.checkbox-unchecked')
         ])
     }
 }
 
-function saveOption(e) {
+function saveOption(vn) {
     var options = {}
-    options[e.target.id] = e.target.checked
-    Checkbox.list[e.target.id].checked = e.target.checked //change view state
+    
+    var id = vn.attrs.id
+    var newState = !Checkbox.list[id].checked 
+    Checkbox.list[id].checked = newState
+    options[id] = newState
     chrome.storage.local.set(options, ()=>{
-        console.log('Option saved: ' + e.target.name + ' ' + e.target.checked)
+        console.log('Option saved: ' + id + ' ' + newState)
     })
 }
 

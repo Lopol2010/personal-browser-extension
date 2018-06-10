@@ -16,7 +16,6 @@
 			"all_frames": true,
 			"matches": ["*://*.oloadcdn.net/*"],
 			"js": ["js/inject/openload/video.js"],
-			"css": ["style/video.css"],
 			"run_at": "document_end"
 		}
 	],
@@ -41,6 +40,10 @@
         "default_title": "Click to open Popup window.",
         "default_icon": "icons/48x48.png",
 		"default_popup": "popup.html"
+	},
+	"oauth2": {
+		"client_id": "758618402390-opkq6h63o7fu3pjlhjot3ig1dto9bkt2.apps.googleusercontent.com",
+		"scopes": ["https://www.googleapis.com/auth/spreadsheets"]
 	},
 	"key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAh1aGncT1DOtA6AqmWiEbb5CHI/PsRxeG1G8SDy7r6GtdbkeY13bA9w7lfMiq47MA1BXmbiAhcMK3ZEWQQXuX4U6/TKA/7bHlcVUkNtX2mkpgxtvXY9LjHH/QfdZDZ9dmxCijwvKyq651gU4X/B/c2V1DFiHV1hnJJrTbtvsQpkqZJz0QLxbH2Yl2opd5ObwcavgPHiKrZMngM/zYxsF04if8otHlrluxL0D0ACdzpGA7hB1vr7gxekHUDRYxLT7LxSs0n4ak5UuwgwU/g9MJjnF4+mQkoPGgIccrbHecb+Mt1bTn1C/CrRVfypd8HS+BdpbINVj14DI6xUF9MrxDWQIDAQAB"
 }

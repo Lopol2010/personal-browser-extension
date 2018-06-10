@@ -9,13 +9,11 @@ var Auth = {
 		})
 	},
 	view: (vnode) => { //
-		return !vnode.state.authorized ? m('.block .block-btn .block-auth', m('.auth', {onclick: BeginAuth},'Authorization')) : null
+		return !vnode.state.authorized ? m('.button-block', m('.auth', {onclick: BeginAuth},'Authorization')) : null
 	}
 }
 function BeginAuth() {
-	GetAccessToken().then(token =>{ 
-		console.log(token)
-	})
+	GetAccessToken()
 }
 
 export default Auth
