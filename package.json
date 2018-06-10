@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:opera": "webpack-cli --config ./webpack.opera.js"
+    "start": "webpack-cli --config ./webpack.chrome.js",
+    "build:opera": "webpack-cli --config ./webpack.opera.js",
+    "build:chrome": "webpack-cli --config ./webpack.chrome.js"
   },
   "repository": {
     "type": "git",
