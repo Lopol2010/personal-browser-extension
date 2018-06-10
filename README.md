@@ -1,3 +1,5 @@
+### Random bookmark button
+Open tab with random url from your bookmarks
 ### OpenLoad Video Only
 Created for educational purposes only
 ### Session manager
