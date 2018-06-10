@@ -4,7 +4,8 @@
   "description": "**js/openload.js**\t\t-\tforces openload iframe to show direct video stream  \r **hot-reload.js**\t\t-\thttps://github.com/xpl/crx-hotreload",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:opera": "webpack-cli --config ./webpack.opera.js"
   },
   "repository": {
     "type": "git",

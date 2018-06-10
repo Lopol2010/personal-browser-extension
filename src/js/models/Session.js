@@ -4,9 +4,7 @@ import {GetLastSavedSession, AppendCell, GetRowsCount, DeleteRows, SheetID} from
 export default { 
     deleteLast: function (e) {
         GetRowsCount().then(count => {
-            DeleteRows(count-1).then(res => {
-                
-            })
+            DeleteRows(count-1)
         })
     }, 
     loadLast: function (e) {
@@ -28,9 +26,7 @@ export default {
             var tabs = tabsArray.map(cur => { return cur.url })
             tabs.reverse()
             var tabsToSave = JSON.stringify({'tabs': tabs})
-            AppendCell(tabsToSave).then((res)=> {
-                callback(res)
-            })
+            AppendCell(tabsToSave)
         })
     },
     openSheetPage: function (e) {

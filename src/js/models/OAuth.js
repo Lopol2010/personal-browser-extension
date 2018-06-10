@@ -12,12 +12,10 @@ var RES_TYPE = 'token'
 const NOT_CACHED = 0 // when cache is empty
 const EXPIRED = 1 //when cached token expired
 
-
-
 export function GetAccessToken() {
   	return new Promise((resolve, reject) => {
 		//check if we are in Google Chrome 
-		if(chrome.identity.hasOwnProperty('getAuthToken')){
+		if(process.env.CHROME){
 			if(process.env.NODE_ENV === 'development'){
 				console.log('getAuthToken API detected')
 			}
@@ -95,7 +93,7 @@ function CacheToken(params) {
 }
 
 export function IsAuthorized(cb) {
-	if(chrome.identity.hasOwnProperty('getAuthToken')){
+	if(process.env.CHROME){
 		chrome.identity.getAuthToken({interactive: false}, function (token) {
 			cb(token !== undefined)
 		})		

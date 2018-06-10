@@ -2,6 +2,7 @@ const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const CssExtractPlugin = require('mini-css-extract-plugin')
 const mode = 'development'
+process.env.CHROME = true
 
 module.exports = {
     context: path.join(__dirname, 'src'),
@@ -14,7 +15,7 @@ module.exports = {
         'js/popup/popup': './js/popup/popup.js',
     },
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: path.join(__dirname, 'dist-opera'),
         filename: '[name].js'
     },
     module: {
@@ -36,8 +37,7 @@ module.exports = {
         new CopyWebpackPlugin([{from: './manifest.json', cache: true},
                                 // {from: './style', to: './style', cache: true},
                                 {from: './icons', to: './icons', cache: true},
-                                {from: './popup.html', cache: true},
-                            ]),
+                                {from: './popup.html', cache: true}]),
         new CssExtractPlugin({filename: '[name].css'})
     ]
 }
