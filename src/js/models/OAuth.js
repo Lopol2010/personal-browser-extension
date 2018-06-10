@@ -16,9 +16,6 @@ export function GetAccessToken() {
   	return new Promise((resolve, reject) => {
 		//check if we are in Google Chrome 
 		if(process.env.CHROME){
-			if(process.env.NODE_ENV === 'development'){
-				console.log('getAuthToken API detected')
-			}
 			chrome.identity.getAuthToken({ interactive: true }, token => {
 				token === undefined ? reject(token) : resolve(token)
 			})
