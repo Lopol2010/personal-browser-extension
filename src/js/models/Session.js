@@ -3,15 +3,11 @@ import {GetLastSavedSession, AppendCell, GetRowsCount, DeleteRows, SheetID} from
 
 export default { 
     deleteLast: function (e) {
-        GetRowsCount().then(count => {
-            DeleteRows(count-1)
-        })
+        GetRowsCount().then(count => DeleteRows(count-1) )
     }, 
     loadLast: function (e) {
-        // chrome.runtime.sendMessage({event: "LoadLastSavedTabs"}, isAuth => { })
         GetLastSavedSession().then(data => {
-			console.log(data)
-			var data = JSON.parse(data).tabs
+			var data = JSON.parse(data)
 			data.forEach(url=>{
 				chrome.tabs.query({windowType: 'normal'}, (tabsArr)=>{
 					chrome.tabs.create({index: tabsArr.length, url: url})
@@ -21,11 +17,10 @@ export default {
 		})
     },
     save: function (e) {
-        // chrome.runtime.sendMessage({event: "SaveTabs"}, res => { console.log('save tabs') })
         chrome.tabs.query({windowType: 'normal'}, (tabsArray, err) => {
             var tabs = tabsArray.map(cur => { return cur.url })
             tabs.reverse()
-            var tabsToSave = JSON.stringify({'tabs': tabs})
+            var tabsToSave = JSON.stringify(tabs)
             AppendCell(tabsToSave)
         })
     },

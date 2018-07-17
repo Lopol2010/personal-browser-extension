@@ -41,7 +41,6 @@ var CheckboxLayout = {
 
 function saveOption(vn) {
     var options = {}
-    
     var id = vn.attrs.id
     var newState = !Checkbox.list[id].checked 
     Checkbox.list[id].checked = newState

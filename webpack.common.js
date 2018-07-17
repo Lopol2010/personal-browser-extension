@@ -1,6 +1,7 @@
 const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const CssExtractPlugin = require('mini-css-extract-plugin')
+const webpack = require('webpack')
 const mode = 'development'
 
 module.exports = {
@@ -26,11 +27,15 @@ module.exports = {
                         'css-loader',
                         // 'postcss-loader', TODO: config
                         'sass-loader']
+            },
+            {
+                test: /.(ts|tsx)$/,
+                use: 'ts-loader'
             }
         ]
     },
     resolve: {
-        extensions: ['.js', '.ts', '.sass']
+        extensions: ['.js', '.ts', '.tsx', '.sass']
     },
     plugins: [
         new CopyWebpackPlugin([{from: './manifest.json', cache: true},
@@ -38,6 +43,9 @@ module.exports = {
                                 {from: './icons', to: './icons', cache: true},
                                 {from: './popup.html', cache: true},
                             ]),
-        new CssExtractPlugin({filename: '[name].css'})
+        new CssExtractPlugin({filename: '[name].css'}),
+        new webpack.DefinePlugin({
+            PLATFORM: JSON.stringify('chrome')
+        })
     ]
 }

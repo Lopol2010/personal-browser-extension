@@ -1,39 +1,31 @@
-import m from 'mithril'
+var m = require('mithril')
 
-
+var visible = false
+var title = ''
 var Confirm = {
-    title: '',
-    titles: [],
     oninit: (vn)=> {
-        vn.state.titles = vn.attrs.titles 
-        Object.keys(vn.state.titles).forEach(keyName => {
-            vn.state.show[keyName] = () => { vn.state.title = vn.state.titles[keyName] }
-        })
+        title = vn.attrs.title || ''
     },
-    show: { },
-    hide: function () {
-        this.title = ''
-        // m.redraw()
-    },
+    show: () => visible = true ,
+    hide: () => visible = false ,
     view: function (vn) {
-        
-        return vn.state.title ? m('.block.block-expand', [
-                            m('.block-title', vn.state.title),
-                            m('button', {onclick: () => { onOk(vn) } }, 'OK'),
-                            m('button', {onclick: ()=>{ onCancel(vn) } }, 'Cancel')
+        return visible ? m('.block.block-expand', [
+                            m('.block-title', title),
+                            m('button.button', {onclick: () => { handleOk(vn) } }, 'OK'),
+                            m('button.button', {onclick: () => { handleCancel(vn) } }, 'Cancel')
                         ]) : null
     }
 }
 
-function onOk (vn) {
-    if(vn.attrs.hasOwnProperty('ok'))
+function handleOk (vn) {
+    if(vn.attrs.ok)
         vn.attrs.ok() 
     vn.state.hide()
 }
-function onCancel (vn) {
-    if(vn.attrs.hasOwnProperty('cancel'))
+function handleCancel (vn) {
+    if(vn.attrs.cancel)
         vn.attrs.cancel()
     vn.state.hide()
 }
 
-export default Confirm
+module.exports = Confirm

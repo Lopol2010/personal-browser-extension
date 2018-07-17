@@ -2,7 +2,7 @@
 	"manifest_version" : 2,
 	"name" : "MY_EXTENSION",
 	"short_name" : "Session manager",
-	"version" : "1.12",
+	"version" : "1.13",
 	"author" : "",
 	"description" : "Extract openload video; Cross-browser(chrome-opera) session saver",
 	"content_scripts": [

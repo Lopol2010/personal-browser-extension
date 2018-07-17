@@ -1,4 +1,5 @@
 import {GetAccessToken, API_KEY} from '../models/OAuth'
+
 var API = "https://sheets.googleapis.com/v4/spreadsheets"
 export var SheetID = "1OS91bJCEYx_BbXJkStNF6uzpheJZC6rej-MqJdEYYyA" 
 
@@ -63,7 +64,7 @@ export async function AppendCell(val) {
     body: JSON.stringify({
       requests: [
         {
-          appendCells: {
+          appendCells: <AppendCellsRequest>{
             sheetId: 0,
             rows: [
               {
@@ -76,7 +77,7 @@ export async function AppendCell(val) {
                 ]
               }
             ],
-            fields: '*'
+            fields: 'userEnteredValue.stringValue'
           }
         }
       ]

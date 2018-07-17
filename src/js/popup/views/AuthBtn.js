@@ -1,5 +1,5 @@
 import m from 'mithril'
-import {GetAccessToken, IsAuthorized} from '../../models/OAuth'
+import {StartAuthFlow, IsAuthorized} from '../../models/OAuth'
 
 var Auth = {
 	oninit: (vnode) => {
@@ -8,12 +8,14 @@ var Auth = {
 			m.redraw() 
 		})
 	},
-	view: (vnode) => { //
-		return !vnode.state.authorized ? m('.button-block', m('.auth', {onclick: BeginAuth},'Authorization')) : null
+	view: function (vnode) { 
+		return !vnode.state.authorized ? m('button.button[type=button]', { onclick: () => { BeginAuth(vnode) } }, 'Sign in') : null
 	}
 }
-function BeginAuth() {
-	GetAccessToken()
+async function BeginAuth(vnode) {
+	var token = await StartAuthFlow()
+	vnode.state.authorized = token === undefined
+	m.redraw()
 }
 
 export default Auth

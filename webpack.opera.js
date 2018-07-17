@@ -8,5 +8,10 @@ module.exports = merge(common, {
 
     output: {
         path: path.join(__dirname, 'dist-opera'),
-    }
+    },
+    plugins: [  
+        new webpack.DefinePlugin({
+            BUILD_PLATFORM: 'opera'
+        })
+    ]
 })

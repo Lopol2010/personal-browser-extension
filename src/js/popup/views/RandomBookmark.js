@@ -5,7 +5,7 @@ var RandBookmark = {
 
 	},
 	view: (vnode) => { 
-		return m('.button-block', m('.randbookmark', {onclick: openRandBookmak},'Random Bookmark'))
+        return m('button.button', {onclick: openRandBookmak},'Random Bookmark')
 	}
 }
 function openRandBookmak() {
