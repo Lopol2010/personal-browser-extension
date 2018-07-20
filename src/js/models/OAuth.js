@@ -31,8 +31,9 @@ export function GetAccessToken() {
 
 export function StartAuthFlow() {
 	return new Promise((resolve, reject) => {
-		//build for chrome else opera
-		if(PLATFORM === 'chrome'){
+
+		
+		if(process.env.CHROME){
 			chrome.identity.getAuthToken({ interactive: true }, token => {
 				token === undefined ? reject(token) : resolve(token)
 			})
@@ -52,7 +53,7 @@ export function StartAuthFlow() {
 }
 
 export function IsAuthorized(cb) {
-	if(PLATFORM === 'chrome'){
+	if(process.env.CHROME){
 		chrome.identity.getAuthToken({interactive: false}, function (token) {
 			
 			if(chrome.runtime.lastError)

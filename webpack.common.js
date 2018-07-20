@@ -4,6 +4,9 @@ const CssExtractPlugin = require('mini-css-extract-plugin')
 const webpack = require('webpack')
 const mode = 'development'
 
+//In our code we can write if(process.env.CHROME) which can dissect platform specific code during build process
+process.env.CHROME = true
+
 module.exports = {
     context: path.join(__dirname, 'src'),
     mode: mode,
@@ -43,9 +46,6 @@ module.exports = {
                                 {from: './icons', to: './icons', cache: true},
                                 {from: './popup.html', cache: true},
                             ]),
-        new CssExtractPlugin({filename: '[name].css'}),
-        new webpack.DefinePlugin({
-            PLATFORM: JSON.stringify('chrome')
-        })
+        new CssExtractPlugin({filename: '[name].css'})
     ]
 }
