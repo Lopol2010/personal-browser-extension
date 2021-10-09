@@ -10,12 +10,9 @@
     "build:opera": "webpack-cli --config ./webpack.opera.js",
     "build:chrome": "webpack-cli --config ./webpack.chrome.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Lopol2010/personal-browser-extension.git"
-  },
+  "repository": "git+https://github.com/Lopol2010/personal-browser-extension.git",
   "keywords": [],
-  "author": "",
+  "author": "Lopol2010 <evgeniy7@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Lopol2010/personal-browser-extension/issues"
