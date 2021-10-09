@@ -1,3 +1,11 @@
+
+## Development
+Run `yarn install`  
+Run `yarn start` for development watch mode  
+For chrome build `yarn build`   
+And opera build `yarn build:opera`  
+
+## Description
 Features|Description
 -|-
 OpenLoad Video Only|Created for educational purposes only. Get url for video stream and replace ad-iframe with raw video stream 
